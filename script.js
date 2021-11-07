@@ -33,13 +33,16 @@ var generatePassword = function () {
 
     // Step 4. Ask user if they want lower case letters
     includeLowerCase = window.prompt("Would you like to include lowercase letters? y = yes");
-
+    includeLowerCase = includeLowerCase.toLowerCase()
     // Step 5. Ask user if they want upper case letters
     includeUpperCase = window.prompt("Would you like to include uppercase letters? y = yes");
+    includeUpperCase = includeUpperCase.toLowerCase()
     // Step 6. Ask user if they want numeric
     includeNumeric = window.prompt("Would you like to include numbers? y = yes");
+    includeNumeric = includeNumeric.toLowerCase()
     // Step 7. Ask user if they want special characters
     includeSpecialCharacters = window.prompt("Would you like to include any special charaters? y = yes");
+    includeSpecialCharacters = includeSpecialCharacters.toLowerCase()
 
      // Step 8. Verify that at least one group was selected
     if (includeLowerCase === "y" || includeUpperCase === "y" || includeNumeric === "y" || includeSpecialCharacters === "y") {
