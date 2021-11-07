@@ -1,4 +1,10 @@
 // Assignment code here
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+  return value;
+};
+
 var generatePassword = function () {
 
   // Step 1. prompt user for password length
@@ -8,7 +14,7 @@ var generatePassword = function () {
   // Step 3. If length is invalid warn user and re-prompt
   passwordLength = parseInt(passwordLength);
   while (true) {
-    if (passwordLength < 8 || passwordLength > 128) {
+    if (passwordLength < 8 || passwordLength > 128 || passwordLength != passwordLength) {
       passwordLength = window.prompt("Please enter a valid value between 8-128");
       passwordLength = parseInt(passwordLength);
     }
@@ -35,17 +41,41 @@ var generatePassword = function () {
     // Step 7. Ask user if they want special characters
     includeSpecialCharacters = window.prompt("Would you like to include any special charaters? y = yes");
 
+     // Step 8. Verify that at least one group was selected
     if (includeLowerCase === "y" || includeUpperCase === "y" || includeNumeric === "y" || includeSpecialCharacters === "y") {
       break;
     }
+    // Step 9. If no group was selected then warn user and re-prompt
     window.alert("Please incluse at least one character group");
 
   }
-
-  // Step 8. Verify that at least one group was selected
-  // Step 9. If no group was selected then warn user and re-prompt
   // Step 10. Generate a password with the criteria
-  // Step 11. Password is shown as an alert or on the webpage
+  // Step 11. Create a string based on their opition selections
+    var passwordOptions = "";
+    if (includeLowerCase === "y") {
+      passwordOptions += "abcdefghijklmnopqrstuvwxyz";
+    }
+    if (includeUpperCase === "y") {
+      passwordOptions += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    }
+    if (includeNumeric === "y") {
+      passwordOptions += "1234567890";
+    }
+    if (includeSpecialCharacters === "y") {
+      passwordOptions += "!@#$%^&*+=?";
+    }
+  
+    // Step 12. Enter a for loop and randomly select charaters from the password string
+    var password ="";
+    for (var i = 0; i < passwordLength; i++) {
+      var randomIndex = randomNumber(0, passwordOptions.length -1);
+
+      var character = passwordOptions.charAt(randomIndex);
+      password += character
+    }
+  // Step 13. Return the string
+    return password;
+  // Step 14. Password is shown as an alert or on the webpage
 }
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
